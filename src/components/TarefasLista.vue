@@ -73,6 +73,9 @@ export default {
             ]),
        
     },
+    created() {
+        this.$store.commit('listarTarefas')
+    },
     methods: {
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
