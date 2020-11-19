@@ -53,6 +53,11 @@ export default {
                 : 'btn-secondary'
         }
     },
+    created() {
+        if (this.tarefa) {
+            console.log('Tarefa por id: ' + this.$store.getters.buscarTarefaPorId(this.tarefa.id))
+        }
+    },
     methods: {
         salvar() {
             const operacao = !this.tarefa ? 'criar' : 'editar'
