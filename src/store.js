@@ -64,17 +64,30 @@ const tarefasModule = {
             commit('listarTarefas', {tarefas})
             console.log('Actions: state: ', state, rootState)
             
+            dispatch('logar', 'Dirceu Henrique', { root: true})
+            // caso a action não tivesse payload como argumento
+            //dispatch('actionVerbo', null, { root: true})
         }
     }
 }
 
 const store = new Vuex.Store({
     state:{
-        usuario: 'Dirceu Henrique'
+        usuario: 'Dirceu'
     },
     getters:{
         mensagemBoasVindas: state => `Olá ${state.usuario}`
     },
+    actions: {
+        logar: ( {commit}, usuario) => {
+            commit('logando', usuario)
+        }
+    },
+    mutations: {
+        logando: ( state, usuario) => {
+            state.usuario = usuario 
+        }
+    }, 
     modules: {
         contador: contadorModule,
         tarefas: tarefasModule,

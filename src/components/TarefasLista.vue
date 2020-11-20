@@ -78,8 +78,12 @@ export default {
     },
     created() {
        setTimeout( async () => {
-            await this.carregarTarefas()
-            console.log("Actions executadas")
+
+        console.log('Usuário atual: ', this.boasVindas)
+        await this.carregarTarefas()
+        console.log("Actions executadas")
+
+        console.log('Usuário transformado: ', this.boasVindas)
            
        },1000)
        console.log('Boas vindas: ', this.boasVindas)
