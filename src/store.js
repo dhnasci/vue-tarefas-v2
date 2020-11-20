@@ -17,7 +17,6 @@ const contadorModule = {
 const tarefasModule = {
     namespaced: true,
     state: {
-        contador: 0,
         tarefas: []
     },
     getters: {
@@ -28,6 +27,11 @@ const tarefasModule = {
         tarefasAFazer: state => state.tarefas.filter( t => !t.concluido), 
         totalDeTarefasConcluidas: (state, getters) => getters.tarefasConcluidas.length,
         buscarTarefaPorId: state => id => state.tarefas.find(t => t.id === id),
+        boasVindas: (state, getters, rootState, rootGetters) => {
+            console.log('State Global: ', rootState.usuario);
+            console.log('Getter Global: ', rootGetters.mensagemBoasVindas);
+            return rootGetters.mensagemBoasVindas
+        }
     }, 
     mutations: {
         // para ser usado com operações sincronas
@@ -67,6 +71,9 @@ const tarefasModule = {
 const store = new Vuex.Store({
     state:{
         usuario: 'Dirceu Henrique'
+    },
+    getters:{
+        mensagemBoasVindas: state => `Olá ${state.usuario}`
     },
     modules: {
         contador: contadorModule,
