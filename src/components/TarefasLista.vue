@@ -48,9 +48,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState} from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
+
+const { mapGetters, mapActions, mapState } = createNamespacedHelpers('tarefas')
 
 export default {
     components: {
@@ -65,8 +67,8 @@ export default {
         }
     },
     computed: {
-        ...mapState('tarefas',['tarefas']),
-        ...mapGetters('tarefas',[
+        ...mapState(['tarefas']),
+        ...mapGetters([
             'tarefasConcluidas', 
             'tarefasAFazer', 
             'totalDeTarefasConcluidas'
@@ -81,7 +83,7 @@ export default {
        },1000)
     },
     methods: {
-        ...mapActions('tarefas', {
+        ...mapActions( {
             carregarTarefas: 'listarTarefas',
         }),
         exibirFormularioCriarTarefa() {
