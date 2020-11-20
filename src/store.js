@@ -39,13 +39,12 @@ export default new Vuex.Store({
 
             )
         },
-        listarTarefas: ({commit, dispatch}, payload) => {
+        listarTarefas: async ({commit, dispatch}, payload) => {
             console.log('Action: listaTarefas')
-            return dispatch('buscarTarefas')
-                .then( tarefas => {
-                    console.log('Mutation: listarTarefas')
-                    commit('listarTarefas', {tarefas})
-                })
+            const tarefas = await dispatch('buscarTarefas')
+            console.log('Mutation: listarTarefas')
+            commit('listarTarefas', {tarefas})
+    
             
         }
     }

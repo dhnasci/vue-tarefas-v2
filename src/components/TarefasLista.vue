@@ -74,11 +74,10 @@ export default {
        
     },
     created() {
-       setTimeout( () => {
-           this.carregarTarefas()
-            .then( () => {
-                console.log("Actions executadas")
-            })
+       setTimeout( async () => {
+            await this.carregarTarefas()
+            console.log("Actions executadas")
+           
        },1000)
     },
     methods: {
