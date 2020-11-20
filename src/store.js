@@ -4,7 +4,13 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const contadorModule = {
+    state: {
+        contador: 0,
+    }
+}
+
+const tarefasModule = {
     state: {
         contador: 0,
         tarefas: []
@@ -47,5 +53,12 @@ export default new Vuex.Store({
     
             
         }
+    }
+}
+
+export default new Vuex.Store({
+    modules: {
+        contador: contadorModule,
+        tarefas: tarefasModule,
     }
 })
