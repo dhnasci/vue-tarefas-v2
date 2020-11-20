@@ -15,13 +15,20 @@ export default new Vuex.Store({
         buscarTarefaPorId: state => id => state.tarefas.find(t => t.id === id),
     }, 
     mutations: {
+        // para ser usado com operações sincronas
         listarTarefas: (state, { tarefas }) => {
             state.tarefas = tarefas
         }
     },
     actions:{
-        listarTarefas: (context, payload) => {
-            context.commit('listarTarefas', payload)
+        // para ser usado com requisições assincronas
+        listarTarefas: ({commit}, payload) => {
+            console.log('action chamada...')
+            setTimeout( () => {
+                console.log('action executada...')
+                commit('listarTarefas', payload)
+            }, 2000)
+            
         }
     }
 })
