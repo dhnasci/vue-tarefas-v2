@@ -26,13 +26,13 @@ export default new Vuex.Store({
         buscarTarefaPorId: state => id => state.tarefas.find(t => t.id === id),
     }, 
     mutations: {
-        listarTarefas: state => {
-            state.tarefas = [
-                { id: 1, titulo: 'Aprender Vue', concluido: true },
-                { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-                { id: 3, titulo: 'Aprender Vuex', concluido: false }
-            ]
+        /*
+        listarTarefas: (state, payload) => {
+            state.tarefas = payload.tarefas
         }
-        
+        */
+        listarTarefas: (state, { tarefas }) => {
+            state.tarefas = tarefas
+        }
     }
 })
