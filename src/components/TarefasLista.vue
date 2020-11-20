@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState} from 'vuex'
+import { mapGetters, mapActions, mapState} from 'vuex'
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
 
@@ -75,13 +75,16 @@ export default {
     },
     created() {
        setTimeout( () => {
-           this.$store.dispatch('listarTarefas')
+           this.carregarTarefas()
             .then( () => {
                 console.log("Actions executadas")
             })
        },1000)
     },
     methods: {
+        ...mapActions({
+            carregarTarefas: 'listarTarefas',
+        }),
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
                 this.tarefaSelecionada = undefined
