@@ -65,8 +65,8 @@ export default {
         }
     },
     computed: {
-        ...mapState(['tarefas']),
-        ...mapGetters([
+        ...mapState('tarefas',['tarefas']),
+        ...mapGetters('tarefas',[
             'tarefasConcluidas', 
             'tarefasAFazer', 
             'totalDeTarefasConcluidas'
@@ -81,7 +81,7 @@ export default {
        },1000)
     },
     methods: {
-        ...mapActions({
+        ...mapActions('tarefas', {
             carregarTarefas: 'listarTarefas',
         }),
         exibirFormularioCriarTarefa() {
