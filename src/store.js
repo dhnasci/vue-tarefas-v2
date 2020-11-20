@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -22,12 +23,29 @@ export default new Vuex.Store({
     },
     actions:{
         // para ser usado com requisições assincronas
-        listarTarefas: ({commit}, payload) => {
-            console.log('action chamada...')
-            setTimeout( () => {
-                console.log('action executada...')
-                commit('listarTarefas', payload)
-            }, 2000)
+        // usando Promises...
+        buscarTarefas: ( context, payload ) => {
+            return new Promise( (resolve, reject) => {
+                setTimeout(() => {
+                    resolve(
+                        [
+                            { id: 1, titulo: 'Aprender Vue', concluido: true },
+                            { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+                            { id: 3, titulo: 'Aprender Vuex', concluido: false }
+                        ]
+                    )
+                }, 2000)
+            }
+
+            )
+        },
+        listarTarefas: ({commit, dispatch}, payload) => {
+            console.log('Action: listaTarefas')
+            return dispatch('buscarTarefas')
+                .then( tarefas => {
+                    console.log('Mutation: listarTarefas')
+                    commit('listarTarefas', {tarefas})
+                })
             
         }
     }
