@@ -4,6 +4,11 @@ import TarefasService from './../_services/TarefasService'
 
 export default {
     // para ser usado com requisições assincronas
+    concluirTarefa: async ( {dispatch }, payload ) => {
+        const tarefa = Object.assign({}, payload.tarefa)
+        tarefa.concluido = !tarefa.concluido
+        dispatch('editarTarefa', {tarefa})
+    },
     criarTarefa: ({commit}, {tarefa}) => {
         return TarefasService.postTarefa(tarefa)
             .then( response => commit(types.CRIAR_TAREFA, {tarefa: response.data}) )
