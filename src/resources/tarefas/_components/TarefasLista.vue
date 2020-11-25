@@ -50,7 +50,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-import tarefasModule from './../_store/index'
+import register from './../_store/register'
 
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
@@ -80,10 +80,9 @@ export default {
        
     },
     created() {
-        console.log('Store: ', this.$store)
-        // registrando modulos dinamicamente no componente
-        this.$store.registerModule('tarefas', tarefasModule)
-        //
+        // registrando com a nova função register
+        register(this.$store)
+
        setTimeout( async () => {
 
         console.log('Usuário atual: ', this.boasVindas)
