@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import * as types from './mutation-types'
+
 export default {
     // para ser usado com requisições assincronas
     // usando Promises...
@@ -21,7 +23,7 @@ export default {
         
         const tarefas = await dispatch('buscarTarefas')
        
-        commit('listarTarefas', {tarefas})
+        commit(types.LISTAR_TAREFAS, {tarefas})
        
         dispatch('logar', 'Dirceu Henrique', { root: true})
       
