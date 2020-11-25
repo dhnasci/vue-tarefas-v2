@@ -1,31 +1,27 @@
 /* eslint-disable no-unused-vars */
 import * as types from './mutation-types'
+import TarefasService from './../_services/TarefasService'
 
 export default {
     // para ser usado com requisições assincronas
-    // usando Promises...
-    buscarTarefas: ( context, payload ) => {
-        return new Promise( (resolve, reject) => {
-            setTimeout(() => {
-                resolve(
-                    [
-                        { id: 1, titulo: 'Aprender Vue', concluido: true },
-                        { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-                        { id: 3, titulo: 'Aprender Vuex', concluido: false }
-                    ]
-                )
-            }, 2000)
-        }
-
-        )
+    criarTarefa: ({commit}, {tarefa}) => {
+        return TarefasService.postTarefa(tarefa)
+            .then( response => commit(types.CRIAR_TAREFA, {tarefa: response.data}) )
     },
-    listarTarefas: async ({commit, dispatch, state, rootState, getters, rootGetters}, payload) => {
+    editarTarefa: async ({commit}, {tarefa}) => {
+        const response = await TarefasService.putTarefa(tarefa)
+        commit(types.EDITAR_TAREFA, { tarefa: response.data })
+    },
+    deletarTarefa: async ({commit}, {tarefa}) => {
+        const response = await TarefasService.deletarTarefa(tarefa.id)
+        commit(types.DELETAR_TAREFA, { tarefa })
+    },
+    listarTarefas: async ({commit}) => {
         
-        const tarefas = await dispatch('buscarTarefas')
+        const response = await TarefasService.getTarefas()
        
-        commit(types.LISTAR_TAREFAS, {tarefas})
-       
-        dispatch('logar', 'Dirceu Henrique', { root: true})
+        commit(types.LISTAR_TAREFAS, {tarefas: response.data})
+
       
     }
 }
