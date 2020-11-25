@@ -1,24 +1,5 @@
 /* eslint-disable no-unused-vars */
-const state = {
-    tarefas: []
-}
-
-const getters = {
-    tarefasConcluidas: (state) => state.tarefas.filter( t => t.concluido),
-    tarefasAFazer: state => state.tarefas.filter( t => !t.concluido), 
-    totalDeTarefasConcluidas: (state, getters) => getters.tarefasConcluidas.length,
-    buscarTarefaPorId: state => id => state.tarefas.find(t => t.id === id),
-    boasVindas: (state, getters, rootState, rootGetters) => rootGetters.mensagemBoasVindas
-}
-
-const mutations = {
-    // para ser usado com operações sincronas
-    listarTarefas: (state, { tarefas }) => {
-        state.tarefas = tarefas
-    }
-}
-
-const actions = {
+export default {
     // para ser usado com requisições assincronas
     // usando Promises...
     buscarTarefas: ( context, payload ) => {
@@ -45,12 +26,4 @@ const actions = {
         dispatch('logar', 'Dirceu Henrique', { root: true})
       
     }
-}
-
-export default {
-    namespaced: true,
-    state,
-    getters, 
-    mutations,
-    actions
 }

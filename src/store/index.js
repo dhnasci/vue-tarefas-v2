@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import contador from '@/store/modules/contador'
-import tarefas from '@/store/modules/tarefas'
+import contador from '@/resources/contador/_store/index'
+import tarefas from '@/resources/tarefas/_store/index'
 
 Vue.use(Vuex)
 
@@ -27,13 +27,16 @@ const mutations = {
     }
 }
 
+const modules = {
+    contador,
+    tarefas,
+}
+
 export default new Vuex.Store({
+    strict: process.env.NODE_ENV !== 'production',
     state,
     getters,
     actions,
     mutations, 
-    modules: {
-        contador,
-        tarefas,
-    }
+    modules
 })
