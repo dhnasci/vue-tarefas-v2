@@ -23,7 +23,8 @@
                 :key="tarefa.id"
                 :tarefa="tarefa"
                 @editar="selecionarTarefaParaEdicao" 
-                @concluir="concluirTarefa({ tarefa: $event })" />
+                @concluir="concluirTarefa({ tarefa: $event })"
+                @deletar="deletarTarefa({ tarefa: $event })" />
         </ul>
 
         <p v-else>Nenhuma tarefa a fazer.</p>
@@ -36,7 +37,8 @@
                 :key="tarefa.id"
                 :tarefa="tarefa"
                 @editar="selecionarTarefaParaEdicao" 
-                @concluir="concluirTarefa({ tarefa: $event })" />
+                @concluir="concluirTarefa({ tarefa: $event })"
+                @deletar="deletarTarefa({ tarefa: $event })" />
         </ul>
 
         <p v-else>Nenhuma tarefa concluida.</p>
@@ -89,6 +91,7 @@ export default {
     methods: {
         ...mapActions( [
             'listarTarefas',
+            'deletarTarefa',
             'concluirTarefa'
             ]),
         exibirFormularioCriarTarefa() {
