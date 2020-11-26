@@ -38,7 +38,7 @@
                 :tarefa="tarefa"
                 @editar="selecionarTarefaParaEdicao" 
                 @concluir="concluirTarefa({ tarefa: $event })"
-                @deletar="deletarTarefa({ tarefa: $event })" />
+                @deletar="confirmarRemocaoTarefa" />
         </ul>
 
         <p v-else>Nenhuma tarefa concluida.</p>
@@ -94,6 +94,12 @@ export default {
             'deletarTarefa',
             'concluirTarefa'
             ]),
+        confirmarRemocaoTarefa(tarefa) {
+            const confirmar = window.confirm(`Deseja deletar a tarefa "${tarefa.titulo}" - id:${tarefa.id}?`)
+            if (confirmar){
+                this.deletarTarefa({tarefa})
+            }
+        },
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
                 this.tarefaSelecionada = undefined
