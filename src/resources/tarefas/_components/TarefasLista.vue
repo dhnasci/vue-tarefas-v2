@@ -45,7 +45,7 @@
 
         <TarefaSalvar
             v-if="exibirFormulario"
-            :tarefa="tarefaSelecionada" />
+            @salvar = "salvarTarefa" />
 
 
     </div>
@@ -77,7 +77,8 @@ export default {
             'tarefasConcluidas', 
             'tarefasAFazer', 
             'totalDeTarefasConcluidas',
-            'boasVindas'
+            'boasVindas',
+            'totalDeTarefas'
             ]),
        
     },
@@ -92,7 +93,9 @@ export default {
             'deletarTarefa',
             'concluirTarefa',
             'selecionarTarefa', 
-            'resetarTarefaSelecionada'
+            'resetarTarefaSelecionada',
+            'criarTarefa',
+            'editarTarefa'
             ]),
         confirmarRemocaoTarefa(tarefa) {
             const confirmar = window.confirm(`Deseja deletar a tarefa "${tarefa.titulo}" - id:${tarefa.id}?`)
@@ -114,6 +117,18 @@ export default {
         resetar() {
             this.exibirFormulario = false
             this.resetarTarefaSelecionada()
+        },
+        async salvarTarefa(event) {
+            switch (event.operacao){
+                case 'criar': 
+                    event.tarefa.id = this.totalDeTarefas + 1
+                    await this.criarTarefa( { tarefa: event.tarefa })
+                    
+                    break
+                case 'editar':  
+                    await this.editarTarefa( { tarefa: event.tarefa })
+            }
+            this.resetar()
         }
     }
 }

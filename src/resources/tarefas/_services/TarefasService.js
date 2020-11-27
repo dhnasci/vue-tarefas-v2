@@ -16,7 +16,9 @@ export default {
         return apiClient.get( `/tarefas/${id}`)
     }, 
     postTarefa(tarefa) {
-        return apiClient.post('/tarefa', tarefa)
+        
+        console.log('no post > ' + tarefa.id + ' - ' + tarefa.titulo + ' - ' + tarefa.concluido)
+        return apiClient.post('/tarefas/', tarefa)
     },
     putTarefa(tarefa) {
         return apiClient.put(`/tarefas/${tarefa.id}`, tarefa)
