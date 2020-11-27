@@ -5,7 +5,8 @@ import mutations from './mutations'
 
 const state = {
     tarefas: [],
-    tarefaSelecionada: undefined
+    tarefaSelecionada: undefined,
+    erro: undefined
 }
 
 export default {

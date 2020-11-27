@@ -24,6 +24,11 @@
       "titulo": "Aprender axios",
       "concluido": false,
       "id": 5
+    },
+    {
+      "titulo": "Aprender Nuxt",
+      "concluido": false,
+      "id": 6
     }
   ]
 }

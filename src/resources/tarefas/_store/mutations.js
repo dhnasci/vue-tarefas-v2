@@ -3,7 +3,8 @@ import {
      EDITAR_TAREFA,
      CRIAR_TAREFA,
      DELETAR_TAREFA,
-     SELECIONAR_TAREFA
+     SELECIONAR_TAREFA,
+     SETAR_ERRO
 } from './mutation-types'
 
 export default {
@@ -26,5 +27,8 @@ export default {
     },
     [SELECIONAR_TAREFA]: (state, { tarefa }) => {
         state.tarefaSelecionada = tarefa
+    },
+    [SETAR_ERRO]: (state, { erro }) => {
+        state.erro = erro
     }
 }

@@ -52,7 +52,7 @@ export default {
                 : 'col-sm-12'
         },
         classeBotao() {
-            return this.tarefaSelecionada && this.tarefa.concluido
+            return this.tarefaSelecionada && this.tarefaSelecionada.concluido
                 ? 'btn-success'
                 : 'btn-secondary'
         }

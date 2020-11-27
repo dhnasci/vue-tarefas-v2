@@ -12,6 +12,7 @@ export default {
     criarTarefa: ({commit}, {tarefa}) => {
         return TarefasService.postTarefa(tarefa)
             .then( response => commit(types.CRIAR_TAREFA, {tarefa: response.data}) )
+            .catch( erro => commit(types.SETAR_ERRO, { erro}))
     },
     editarTarefa: async ({commit}, {tarefa}) => {
         const response = await TarefasService.putTarefa(tarefa)
@@ -22,8 +23,13 @@ export default {
         commit(types.DELETAR_TAREFA, { tarefa })
     },
     listarTarefas: async ({commit}) => {
-        const response = await TarefasService.getTarefas()
-        commit(types.LISTAR_TAREFAS, {tarefas: response.data})
+        try{
+            const response = await TarefasService.getTarefas()
+            commit(types.LISTAR_TAREFAS, {tarefas: response.data})
+        }catch(erro) {
+            commit(types.SETAR_ERRO, { erro })
+        } 
+        
     },
     selecionarTarefa: ( {commit}, payload) => {
         commit(types.SELECIONAR_TAREFA, payload)
